@@ -4,10 +4,9 @@ module Platform
     format :json
     formatter :json, Grape::Formatter::ActiveModelSerializers
 
-    get do
-      '/'
-    end
-    
+    helpers Platform::Helpers::Auth
+
     mount Platform::Resources::Users
+    mount Platform::Resources::Sessions
   end
 end
