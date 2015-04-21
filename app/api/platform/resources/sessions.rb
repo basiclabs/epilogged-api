@@ -10,18 +10,9 @@ module Platform
       post do
         user = User.find_by(email: params[:email])
 
-        if user && user.authenticate(params[:password])
-          key = ApiKey.create(user_id: user.id)
-          {token: key.access_token}
-        else
-          error!('Unauthorized.', 401)
-        end
-      end
-
-      desc "Returns pong if logged in correctly"
-      get :ping do
-        authenticate!
-        { message: "pong" }
+        return error! 'Unauthorized.', 401 unless user && user.authenticate(params[:password])
+        key = ApiKey.create(user_id: user.id)
+        { token: key.access_token }
       end
     end 
   end
