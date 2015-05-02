@@ -1,8 +1,9 @@
 module Platform
   class Resources::Users < Grape::API
     resource :users do
-      get do
-        '/users'
+      get 'me' do
+        authenticate!
+        current_user
       end
     end
   end
