@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 gem 'rb-readline'
 
+gem 'dotenv-rails'
+
 gem 'bcrypt'
 
 # Use postgresql as the database for Active Record
@@ -14,6 +16,9 @@ gem 'grape'
 gem 'grape-active_model_serializers'
 
 gem 'foreman'
+
+# Amazon Product API
+gem 'vacuum'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

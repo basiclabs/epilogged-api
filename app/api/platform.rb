@@ -8,5 +8,6 @@ module Platform
 
     mount Platform::Resources::Users
     mount Platform::Resources::Sessions
+    mount Platform::Resources::Books
   end
 end
