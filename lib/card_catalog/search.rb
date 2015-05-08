@@ -8,11 +8,13 @@ class CardCatalog::Search
     end
 
     def by_keyword(keyword)
-      request.item_search( query: {
+      puts 'HELLO AMAZON'
+      response = request.item_search( query: {
         'Power' => "title:#{keyword} or author:#{keyword} or ISBN:#{keyword}",
         'SearchIndex' => 'Books',
         'ResponseGroup' => 'Images,ItemAttributes'
-      }).to_h
+      })
+      CardCatalog::Transform.from_amazon(response)
     end
   end
 end

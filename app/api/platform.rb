@@ -5,6 +5,7 @@ module Platform
     formatter :json, Grape::Formatter::ActiveModelSerializers
 
     helpers Platform::Helpers::Auth
+    helpers Platform::Helpers::Cache
 
     mount Platform::Resources::Users
     mount Platform::Resources::Sessions

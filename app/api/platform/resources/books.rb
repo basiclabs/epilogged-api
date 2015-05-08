@@ -6,7 +6,9 @@ module Platform
         requires :keyword,    type: String, desc: "Title, Author or ISBN"
       end
       get 'search' do
-        CardCatalog::Search.by_keyword(params[:keyword])
+        cache("search_by_#{params[:keyword]}") do
+          CardCatalog::Search.by_keyword(params[:keyword])
+        end
       end
     end
   end
