@@ -22,5 +22,15 @@ class CardCatalog::Search
       })
       CardCatalog::Transform.from_amazon(response)
     end
+
+    def by_attrs(terms)
+      response = request.item_search( query: {
+        'Power' => terms.map{ |k,v| "#{k}:#{v}" }.join(' and '),
+        'SearchIndex' => 'Books',
+        'ResponseGroup' => 'Images,ItemAttributes'
+      })
+      CardCatalog::Transform.from_amazon(response)
+    end
+
   end
 end

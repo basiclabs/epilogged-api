@@ -10,6 +10,13 @@ module Platform
           CardCatalog::Search.by_keyword(params[:keyword])
         end
       end
+
+      get 'advanced' do
+        h = params.select {|k,v| ['ISBN', 'title', 'author'].include?(k) }
+        cache("search_#{h.map { |k, v| "#{k}:#{v}" }.join('_')}") do
+          CardCatalog::Search.by_attrs(h)
+        end
+      end
     end
   end
 end
